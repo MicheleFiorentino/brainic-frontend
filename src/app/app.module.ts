@@ -3,14 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialDesignModule } from './material-design/material-design.module';
+import { LoginComponent } from './presentation/auth/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { PatientsListComponent } from './presentation/patients-list/patients-list.component';
+import { DoctorInfoComponent } from './presentation/doctor-info/doctor-info.component';
+import { PatientDashboardComponent } from './presentation/patient-dashboard/patient-dashboard.component';
+import { EegChartComponent } from './presentation/eeg/eeg-chart/eeg-chart.component';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
+import { EegElectrodesComponent } from './presentation/eeg/eeg-electrodes/eeg-electrodes.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    DoctorInfoComponent,
+    PatientDashboardComponent,
+    EegChartComponent,
+    PatientProfileComponent,
+    PatientsListComponent,
+    EegElectrodesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MaterialDesignModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

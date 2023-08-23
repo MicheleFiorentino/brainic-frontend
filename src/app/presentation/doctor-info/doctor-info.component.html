@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Doctor
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{doctor?.specialization}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img class="profile-avatar" mat-card-avatar [src]="avatar" alt="Profile">
+    <mat-card-content>
+      <div class="doctor-info">
+        <div class="doctor-fields">
+          <P>FISCAL CODE:</P>
+          <p>NAME:</p>
+          <p>SURNAME:</p>
+          <p>DATE OF BIRTH:</p>
+          <p>SEX:</p>
+          <p>E-MAIL:</p>
+          <p>PHONE NUMBER:</p>
+        </div>
+        <div class="doctor-values">
+          <p>{{doctor?.fiscalCode}}</p>
+          <p>{{doctor?.name}}</p>
+          <p>{{doctor?.surname}}</p>
+          <p>{{doctor?.dateOfBirth}}</p>
+          <p>{{doctor?.sex}}</p>
+          <p>{{doctor?.email}}</p>
+          <p>{{doctor?.phoneNumber}}</p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-card-actions class="mat-card-buttons">
+        <button mat-raised-button>SETTINGS</button>
+        <button mat-raised-button>PATIENTS</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

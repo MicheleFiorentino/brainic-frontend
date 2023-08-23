@@ -1,0 +1,24 @@
+.profile-div {
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.patient-info {
+  flex-grow: 1;
+}
+
+.patient-fields p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.patient-fields strong {
+  margin-right: 8px;
+  font-weight: bold;
+}

@@ -1,0 +1,34 @@
+.wrapper{
+  margin: 20px auto;
+  width: 40%;
+  display: flex;
+  flex-flow: column;
+}
+
+.profile-avatar {
+  width: 50%;
+  height: auto;
+  align-self: center;
+}
+
+.mat-mdc-card{
+  height: inherit;
+}
+
+.doctor-info {
+  display: flex; /* Nested flexbox to place the div elements side by side */
+  align-items: center; /* Align divs vertically in the middle */
+  justify-content: space-between; /* Add space between divs */
+  width: 100%; /* Expand the div to take full width */
+}
+
+.doctor-fields,
+.doctor-values {
+  padding: 10px; /* Add some spacing between the div elements */
+}
+
+.mat-card-buttons{
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 10px; /* Add spacing between the buttons */
+}

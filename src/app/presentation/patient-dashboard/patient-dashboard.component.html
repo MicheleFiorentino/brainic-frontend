@@ -1,0 +1,127 @@
+<div class="card-container">
+
+  <mat-card class="profile-card">
+    <app-patient-profile></app-patient-profile>
+  </mat-card>
+
+  <div class="eeg-container">
+    <mat-card>
+      <mat-tab-group animationDuration="0ms" style="height: 80vh;" [selectedIndex]="0">
+        <mat-tab label="Chart">
+          <mat-card-header class="header-container">
+            <div class="header-title">
+              <mat-card-title>EEG</mat-card-title>
+              <mat-card-subtitle>{{subtitleEEG}}</mat-card-subtitle>
+            </div>
+            <div class="header-form-field">
+              <mat-form-field appearance="fill">
+                <mat-label>Select an option</mat-label>
+                <mat-select [(value)]="selectedMeasurement">
+                  <mat-option>None</mat-option>
+                  <mat-option value="option1">Option 1</mat-option>
+                  <mat-option value="option2">Option 2</mat-option>
+                  <mat-option value="option3">Option 3</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-header>
+          <mat-card-content class="chart-container">
+            <app-eeg-chart #bwChart [chartTitle]="chartTitle" [chartData]="chartData" [chartElectrodeArray]="chartElectrodeArray"></app-eeg-chart>
+          </mat-card-content>
+          <p style="text-align: center;">Time (8s)</p>
+          <mat-card-actions class="mat-card-buttons">
+            <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.DELTA, selectedView)">DELTA</button>
+            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.THETA, selectedView)">THETA</button>
+            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.ALPHA, selectedView)">ALPHA</button>
+            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.BETA, selectedView)">BETA</button>
+            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.GAMMA, selectedView)">GAMMA</button>
+            <div class="mat-spacer"></div> <!-- Add a spacer to push the button to the right -->
+            <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #15af89" (click)="toggleView()">TOGGLE VIEW</button>
+          </mat-card-actions>
+          <mat-card-actions class="mat-card-chips">
+
+            <div class="electrode-groups">
+              <div class="electrode-group">
+                <div class="group-title">Occipital</div>
+                <mat-chip-listbox multiple aria-label="Occipital electrodes">
+                  <mat-chip-option
+                    selected="true"
+                    *ngFor="let electrode of occipitalElectrodes"
+                    [ngStyle]="getChipStyles(electrode.color)"
+                    color="primary"
+                    class="electrode-chip"
+                    (click)="toggleElectrode(electrode.name)"
+                  >
+                    {{ electrode.name }}
+                  </mat-chip-option>
+                </mat-chip-listbox>
+              </div>
+
+              <div class="electrode-group">
+                <div class="group-title">Parietal</div>
+                <mat-chip-listbox multiple aria-label="Parietal electrodes">
+                  <mat-chip-option
+                    selected="true"
+                    *ngFor="let electrode of parietalElectrodes"
+                    [ngStyle]="getChipStyles(electrode.color)"
+                    color="primary"
+                    class="electrode-chip"
+                    (click)="toggleElectrode(electrode.name)"
+                  >
+                    {{ electrode.name }}
+                  </mat-chip-option>
+                </mat-chip-listbox>
+              </div>
+
+              <div class="electrode-group">
+                <div class="group-title">Temporal</div>
+                <mat-chip-listbox multiple aria-label="Temporal electrodes">
+                  <mat-chip-option
+                    selected="true"
+                    *ngFor="let electrode of temporalElectrodes"
+                    [ngStyle]="getChipStyles(electrode.color)"
+                    color="primary"
+                    class="electrode-chip"
+                    (click)="toggleElectrode(electrode.name)"
+                  >
+                    {{ electrode.name }}
+                  </mat-chip-option>
+                </mat-chip-listbox>
+              </div>
+
+              <div class="electrode-group">
+                <div class="group-title">Frontal</div>
+                <mat-chip-listbox multiple aria-label="Frontal electrodes">
+                  <mat-chip-option
+                    selected="true"
+                    *ngFor="let electrode of frontalElectrodes"
+                    [ngStyle]="getChipStyles(electrode.color)"
+                    color="primary"
+                    class="electrode-chip"
+                    (click)="toggleElectrode(electrode.name)"
+                  >
+                    {{ electrode.name }}
+
+                  </mat-chip-option>
+                </mat-chip-listbox>
+              </div>
+
+            </div>
+
+
+          </mat-card-actions>
+        </mat-tab>
+        <mat-tab label="Electrodes">
+          <div class="electrodes-container">
+            <app-eeg-electrodes></app-eeg-electrodes>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+
+    <div class="eeg-buttons">
+      <button mat-raised-button color="primary" class="block-left">ASSESSMENT</button>
+      <button mat-raised-button color="primary" class="block-right">TRAINING</button>
+    </div>
+  </div>
+</div>

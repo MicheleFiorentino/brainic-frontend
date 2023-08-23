@@ -1,0 +1,52 @@
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.circle {
+  position: relative; /* Required for absolute positioning */
+  width: 50vh;
+  height: 50vh;
+  border-radius: 50%;
+  background-color: lightblue;
+  border: 2px solid black;
+}
+
+.inner-circle {
+  position: absolute;
+  width: 6vh; /* Adjust size of inner circles */
+  height: 6vh; /* Adjust size of inner circles */
+  border-radius: 50%;
+  background-color: lightgray; /* Adjust background color of inner circles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px; /* Adjust font size of labels */
+  color: black;
+  transform-origin: center;
+  border: 1px solid black;
+}
+
+/* Position the inner circles - 350% is on half the circle */
+
+  /*LEFT*/
+.inner-circle:nth-child(1) { transform: translate(220%, 200%)} /*F3*/
+.inner-circle:nth-child(2) { transform: translate(125%, 260%)} /*FC5*/
+.inner-circle:nth-child(3) { transform: translate(280%, 100%)} /*AF3*/
+.inner-circle:nth-child(4) { transform: translate(80%, 160%)} /*F7*/
+.inner-circle:nth-child(5) { transform: translate(25%, 350%)} /*T7*/
+.inner-circle:nth-child(6) { transform: translate(80%, 510%)} /*P7*/
+.inner-circle:nth-child(7) { transform: translate(220%, 630%)} /*O1*/
+
+  /*RIGHT*/
+.inner-circle:nth-child(8) { transform: translate(480%, 630%)} /*O2*/
+.inner-circle:nth-child(9) { transform: translate(620%, 510%)} /*P8*/
+.inner-circle:nth-child(10) { transform: translate(675%, 350%)} /*T8*/
+.inner-circle:nth-child(11) { transform: translate(620%, 160%)} /*F8*/
+.inner-circle:nth-child(12) { transform: translate(420%, 100%)} /*AF4*/
+.inner-circle:nth-child(13) { transform: translate(575%, 260%)} /*FC6*/
+.inner-circle:nth-child(14) { transform: translate(480%, 200%)} /*F4*/
+

@@ -1,0 +1,24 @@
+.mat-mdc-header-cell,
+.mat-mdc-cell {
+  justify-content: center;
+  padding: 8px 8px 8px 0px;
+}
+
+.mat-mdc-header-cell {
+  font-weight: bold;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Optional: Adjust the height to suit your layout */
+}
+
+.mat-column-sex {
+  flex: 0 0 4%;
+}
+
+.mat-column-email {
+  flex: 0 0 30%;
+}

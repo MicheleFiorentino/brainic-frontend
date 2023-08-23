@@ -1,0 +1,69 @@
+<mat-card style="margin: 20px;">
+  <mat-card-content>
+
+    <div class="center-container">
+      <mat-form-field>
+        <mat-label >Search</mat-label>
+        <input matInput placeholder="Search by code">
+      </mat-form-field>
+    </div>
+
+  <mat-table [dataSource]="patientDataSource">
+    <!-- Image Column -->
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let patient">
+        <img mat-card-avatar [src]="patient.avatarImage" alt="Patient Image">
+      </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let patient">{{ patient.name }}</mat-cell>
+    </ng-container>
+
+    <!-- Surname Column -->
+    <ng-container matColumnDef="surname">
+      <mat-header-cell *matHeaderCellDef>Surname</mat-header-cell>
+      <mat-cell *matCellDef="let patient">{{ patient.surname }}</mat-cell>
+    </ng-container>
+
+    <!-- Sex Column -->
+    <ng-container matColumnDef="sex">
+      <mat-header-cell *matHeaderCellDef>Sex</mat-header-cell>
+      <mat-cell *matCellDef="let patient">{{ patient.sex }}</mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let patient">{{ patient.email }}</mat-cell>
+    </ng-container>
+
+    <!-- CountryFlag Column -->
+    <ng-container matColumnDef="countryFlag">
+      <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
+      <mat-cell *matCellDef="let patient">
+        <img [src]="getCountryFlagImagePath(patient.country)" alt="Country Flag" style="width: 30%;">
+      </mat-cell>
+    </ng-container>
+
+    <!-- Button Column -->
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let patient">
+        <button mat-raised-button style="color:white; background-color: #797979" (click)="onPatientButton(patient.id)">Examine</button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Define table rows -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let patient; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  </mat-card-content>
+
+</mat-card>
+

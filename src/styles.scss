@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/** personal code
+*/
+
+body{
+  background-color: #f2f2f2;
+}
+
+.mat-mdc-card{
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5);
+}
+
+.mat-left-buttons {
+  margin: 2px;
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+.mat-right-buttons {
+  margin: 2px;
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+.mat-spacer {
+  flex-grow: 1; /* Allow the spacer to grow and push the last button to the right */
+}

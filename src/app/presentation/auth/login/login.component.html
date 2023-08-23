@@ -1,0 +1,36 @@
+<div class="flex">
+  <div class="m-auto">
+      <mat-card>
+          <mat-card-title class="textcardtitle">
+              Login Here
+          </mat-card-title>
+          <mat-card-subtitle class="textcardsubtitle">
+              Enter your email and password to login
+          </mat-card-subtitle>
+
+          <form action="">
+              <mat-card-content>
+                  <mat-form-field>
+                      <mat-label>Email</mat-label>
+                      <input matInput type="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required>
+                  </mat-form-field>
+
+                  <mat-divider></mat-divider>
+
+                  <mat-form-field>
+                      <mat-label>Password</mat-label>
+                      <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Enter your password" required>
+                  </mat-form-field>
+
+                  <mat-divider></mat-divider>
+
+                  <mat-card-actions style="justify-content: center;">
+                      <button (click)="onSubmit()" type="submit" mat-raised-button style="color:white; background-color: #797979">
+                          <span>Login</span>
+                      </button>
+                  </mat-card-actions>
+              </mat-card-content>
+          </form>
+      </mat-card>
+  </div>
+</div>
