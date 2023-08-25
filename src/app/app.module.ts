@@ -14,6 +14,9 @@ import { PatientDashboardComponent } from './presentation/patient-dashboard/pati
 import { EegChartComponent } from './presentation/eeg/eeg-chart/eeg-chart.component';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 import { EegElectrodesComponent } from './presentation/eeg/eeg-electrodes/eeg-electrodes.component';
+import { ChangePasswordComponent } from './presentation/handle-password/change-password/change-password.component';
+import { RecoverPasswordComponent } from './presentation/handle-password/recover-password/recover-password.component';
+import { ChangedPasswordComponent } from './presentation/handle-password/changed-password/changed-password.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { EegElectrodesComponent } from './presentation/eeg/eeg-electrodes/eeg-el
     EegChartComponent,
     PatientProfileComponent,
     PatientsListComponent,
-    EegElectrodesComponent
+    EegElectrodesComponent,
+    ChangePasswordComponent,
+    RecoverPasswordComponent,
+    ChangedPasswordComponent
   ],
   imports: [
     BrowserModule,

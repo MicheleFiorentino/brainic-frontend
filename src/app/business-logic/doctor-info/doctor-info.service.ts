@@ -3,6 +3,7 @@ import { Observable, of} from 'rxjs';
 import { Doctor } from 'src/app/interfaces/doctor';
 import { DoctorInfoDaoService } from 'src/app/dao/doctor-info-dao/doctor-info-dao.service';
 import { catchError, switchMap } from 'rxjs/operators';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { catchError, switchMap } from 'rxjs/operators';
 export class DoctorInfoService {
 
   constructor(
-    private doctorInfoDao: DoctorInfoDaoService
+    private doctorInfoDao: DoctorInfoDaoService,
+    private localStorage: LocalStorageService
   ){}
 
   getDoctorInfo(doctorID: number): Observable<Doctor>{
@@ -35,4 +37,10 @@ export class DoctorInfoService {
       })
     );
   }
+
+  changeDoctorPassword(oldPassword: string, newPassword: string){
+    let docId = Number(this.localStorage.getData('doctorId'));
+    return this.doctorInfoDao.changeDoctorPassword(docId, oldPassword, newPassword);
+  }
+
 }

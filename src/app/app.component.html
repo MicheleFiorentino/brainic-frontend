@@ -1,11 +1,19 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="goBack()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <span style="margin: auto;">BODYBRAINIC</span>
-  <button mat-icon-button *ngIf="(authService.loggedIn$ | async); else displayNothing" (click)="goDoctorInfo()">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+<mat-toolbar color="primary" style="position: relative; display: flex; justify-content: space-between;">
+  <div>
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="centered-span">BODYBRAINIC</span>
+  </div>
+  <div *ngIf="(authService.loggedIn$ | async); else displayNothing" style="display: flex; align-items: center;">
+    <button mat-button (click)="onLogout()">
+      <span>Logout</span>
+    </button>
+    <span style="margin: 0 5px;">|</span>
+    <button mat-button  (click)="goDoctorInfo()">
+      <mat-icon>account_circle</mat-icon><p style="margin: 0 5px;">Hi, Doctor!</p>
+    </button>
+  </div>
   <ng-template #displayNothing>
     <!-- Optional: You can display a different icon for logged-out state -->
   </ng-template>

@@ -11,6 +11,7 @@ export class DoctorInfoDaoService {
   private baseUrl = 'http://localhost:8080/bodybrainic';
   private docInfoUrl = '/doctor/byId';
   private docAvatarUrl = '/doctor/avatarByPath';
+  private docChangePasswordUrl = '/doctor/changePassword';
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +30,13 @@ export class DoctorInfoDaoService {
         responseType: 'blob',
         params: queryParams
       })
+  }
+
+  changeDoctorPassword(id: number, oldPassword: string, newPassword: string){
+    const changePasswordData = { id, oldPassword, newPassword};
+    console.log(changePasswordData)
+    return this.http.post(this.baseUrl.concat(this.docChangePasswordUrl),
+      changePasswordData
+    )
   }
 }

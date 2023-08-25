@@ -29,6 +29,14 @@
                           <span>Login</span>
                       </button>
                   </mat-card-actions>
+
+                  <div *ngIf="areCredentialsWrong" class="error-credentials-div">
+                    Wrong credentials
+                  </div>
+
+                  <div class="recover-password-div">
+                    <mat-card-subtitle>Forgotten Password? <span (click)="onRecoverPassword()">Recover</span></mat-card-subtitle>
+                  </div>
               </mat-card-content>
           </form>
       </mat-card>

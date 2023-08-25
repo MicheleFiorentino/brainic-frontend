@@ -11,7 +11,7 @@ import { LocalStorageService } from 'src/app/business-logic/local-storage/local-
 export class LoginComponent {
   email: string = '';
   password: string = '';
-
+  areCredentialsWrong: boolean = false
 
   constructor(
     private router: Router,
@@ -30,8 +30,12 @@ export class LoginComponent {
       },
       error => {
         // Handle login error here
-        console.error('Login failed:', error);
+        this.areCredentialsWrong = true;
       }
     );
+  }
+
+  onRecoverPassword(){
+    this.router.navigate(['/recover-password'])
   }
 }

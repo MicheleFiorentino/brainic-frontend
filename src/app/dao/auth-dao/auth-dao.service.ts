@@ -9,6 +9,7 @@ export class AuthDaoService {
   private baseUrl = 'http://localhost:8080/bodybrainic';
   private loginUrl = '/auth/login'
 
+
   constructor(private http: HttpClient) { }
 
   // Method to handle login and authentication

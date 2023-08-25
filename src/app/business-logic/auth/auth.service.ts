@@ -11,7 +11,8 @@ export class AuthService {
   loggedIn$: Observable<boolean> = this.loggedInSubject.asObservable();
 
   constructor(
-    private authDao: AuthDaoService
+    private authDao: AuthDaoService,
+    private localStorage: LocalStorageService
     ){}
 
   // Method to handle login and authentication

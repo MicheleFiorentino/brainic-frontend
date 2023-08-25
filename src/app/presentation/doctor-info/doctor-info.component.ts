@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/business-logic/local-storage/local-storage.service';
 import { DoctorInfoService } from 'src/app/business-logic/doctor-info/doctor-info.service';
 import { Doctor } from 'src/app/interfaces/doctor';
+import { AuthService } from 'src/app/business-logic/auth/auth.service';
 
 @Component({
   selector: 'app-doctor-info',
@@ -16,7 +17,8 @@ export class DoctorInfoComponent {
   constructor(
     private router: Router,
     private localStorage: LocalStorageService,
-    private docService: DoctorInfoService
+    private docService: DoctorInfoService,
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -42,5 +44,15 @@ export class DoctorInfoComponent {
         this.avatar = base64Avatar;
       }
     );
+  }
+
+  onLogout(){
+    this.localStorage.clearData();
+    this.authService.setLoggedIn(false)
+    this.router.navigate(['/login'])
+  }
+
+  onChangePassword(){
+    this.router.navigate(['/change-password'])
   }
 }
