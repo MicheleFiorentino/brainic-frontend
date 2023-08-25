@@ -1,6 +1,19 @@
 <div class="circle-container">
   <div class="circle">
-    <!-- Inner Circles -->
-    <div class="inner-circle" *ngFor="let label of labels">{{ label }}</div>
+    <div
+      class="inner-circle"
+      *ngFor="let label of labels; let i = index"
+      [style.background-color]="getBackgroundColor(i)"
+    >
+      {{ label }}
+    </div>
+    <div class="triangle"></div>
   </div>
+</div>
+<div class="legend">
+  <div style="margin-right: 15px;">0</div>
+  <div class="gradient-legend horizontal">
+    <div class="gradient-color-bar"></div>
+  </div>
+  <div style="margin-left: 15px;">1</div>
 </div>

@@ -24,6 +24,11 @@
   height: 20vh;
 }
 
+.chart-detail-container{
+  height: 15vh;
+  margin-bottom: 20px;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -49,7 +54,7 @@
 }
 
 .electrodes-container {
-  margin-top: 10vh;
+  margin-top: 2vh;
 }
 
 .electrode-group {

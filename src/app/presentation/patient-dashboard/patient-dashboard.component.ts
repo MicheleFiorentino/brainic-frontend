@@ -27,6 +27,9 @@ export class PatientDashboardComponent {
   selectedBwtype = BrainWaves.DELTA;
   selectedMeasurement: string = 'most recent';
 
+  labels: string[] =  ['F3', 'FC5', 'AF3', 'F7', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'F8', 'AF4', 'FC6', 'F4'];
+  chartDataDetails: number[][][] = Array.from({ length: 14 }, () => [[0]]);
+
   occipitalElectrodes: Electrode[] = [];
   parietalElectrodes: Electrode[] = [];
   temporalElectrodes: Electrode[] = [];
@@ -36,13 +39,9 @@ export class PatientDashboardComponent {
     private dbService: PatientDashboardService
   ){}
 
-
   ngOnInit(): void {
     this.getEEGData();
-    this.occipitalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['O1', 'O2'].includes(electrode.name));
-    this.parietalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['P7', 'P8'].includes(electrode.name));
-    this.temporalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['T7', 'T8'].includes(electrode.name));
-    this.frontalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['FC5', 'FC6', 'F7', 'F8', 'F3', 'F4', 'AF3', 'AF4'].includes(electrode.name));
+    this.initElectrodesView();
   }
 
   //GET BRAIWAVES DATA OF PATIENT FROM CSV, INIT
@@ -56,20 +55,30 @@ export class PatientDashboardComponent {
     });
   }
 
+  //DIVIDE ELECTRODES IN GROUPS
+
+  initElectrodesView(){
+    this.occipitalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['O1', 'O2'].includes(electrode.name));
+    this.parietalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['P7', 'P8'].includes(electrode.name));
+    this.temporalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['T7', 'T8'].includes(electrode.name));
+    this.frontalElectrodes = this.chartElectrodeArray.data.filter(electrode => ['FC5', 'FC6', 'F7', 'F8', 'F3', 'F4', 'AF3', 'AF4'].includes(electrode.name));
+  }
+
 
   // BUTTON UPDATING CHARTS
 
   onUpdateEEG(bwtype: BrainWaves, view: ViewType){
-    this.updateEEGDataChart(bwtype, view);
+    this.updateEEGData(bwtype, view);
     this.updateEEGSubtitle(bwtype);
   }
 
-  updateEEGDataChart(bwtype: BrainWaves, view: ViewType){
+  updateEEGData(bwtype: BrainWaves, view: ViewType){
     if(view == ViewType.Active){
       this.chartData = this.eegDataActive[bwtype];
     } else {
       this.chartData = this.eegDataRest[bwtype];
     }
+    this.updateDataChartDetails();
     this.selectedBwtype = bwtype;
   }
 
@@ -105,8 +114,37 @@ export class PatientDashboardComponent {
       this.chartTitle = 'Active';
     }
 
-    this.updateEEGDataChart(this.selectedBwtype, this.selectedView);
+    this.updateEEGData(this.selectedBwtype, this.selectedView);
     this.bwChart.updateChartTitle(this.chartTitle)
+  }
+
+
+  updateEEGElectrodes(bwtype: BrainWaves, view: ViewType){
+    if(view == ViewType.Active){
+      this.chartData = this.eegDataActive[bwtype];
+    } else {
+      this.chartData = this.eegDataRest[bwtype];
+    }
+    this.selectedBwtype = bwtype;
+  }
+
+
+  updateEEGElectrodesSubtitle(bwtype: BrainWaves){
+    this.subtitleEEG = BrainWaves[bwtype].concat(' waves');
+  }
+
+  updateDataChartDetails(){
+    for(let i=0; i<this.chartData.length; i++){
+      this.chartDataDetails[i] = [...this.chartData];
+
+      //exclude "i" electrode. It should not be overriden
+      for(let j=0; j<i; j++){
+        this.chartDataDetails[i][j] = [0];
+      }
+      for(let j=i+1; j<14; j++){
+        this.chartDataDetails[i][j] = [0];
+      }
+    }
   }
 
 }

@@ -25,10 +25,46 @@
   justify-content: center;
   align-items: center;
   font-size: 18px; /* Adjust font size of labels */
-  color: black;
+  color: white;
   transform-origin: center;
   border: 1px solid black;
 }
+
+.triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5vh solid transparent; /* Adjust size of the triangle */
+  border-right: 5vh solid transparent; /* Adjust size of the triangle */
+  border-bottom: 5vh solid rgba(0, 0, 0, 0.5); /* Adjust color and size of the triangle */
+  top: -3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; /* Place the triangle behind the circle */
+}
+
+.legend{
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 1vh;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.gradient-legend {
+  width: 100%;
+  height: 20px;
+  border: 1px solid #000;
+  position: relative;
+}
+
+.gradient-color-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #050032, #e20000);
+}
+
 
 /* Position the inner circles - 350% is on half the circle */
 

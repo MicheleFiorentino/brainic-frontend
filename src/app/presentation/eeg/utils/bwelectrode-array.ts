@@ -1,20 +1,20 @@
 import { Electrode } from "./electrode.model";
 
 enum Color {
-  Red = '#FF0000',
-  Green = '#00FF00',
-  Blue = '#0000FF',
-  Yellow = '#FFFF00',
-  Magenta = '#FF00FF',
-  Cyan = '#00FFFF',
-  Orange = '#FF8000',
-  SkyBlue = '#0080FF',
-  Purple = '#8000FF',
-  Lime = '#80FF00',
-  Pink = '#FF0080',
-  Turquoise = '#00FF80',
-  Indigo = '#8000FF',
-  Azure = '#0080FF'
+  Blue1 = '#00a1ff',
+  Blue2 = '#0080cb',
+  Blue3 = '#00639d',
+  Blue4 = '#004873',
+  Blue5 = '#1f00ff',
+  Blue6 = '#1900d1',
+  Blue7 = '#1400a7',
+  Blue8 = '#0e0073',
+  Red1 = '#ff0000',
+  Red2 = '#a60000',
+  Green1 = '#00c917',
+  Green2 = '#009111',
+  Pink1 = '#ff008a',
+  Pink2 = '#a8065e'
 }
 
 export class BWElectrodeArray {
@@ -22,20 +22,20 @@ export class BWElectrodeArray {
 
   constructor(){
     this.data = [
-      new Electrode('F3', Color.Red, false),
-      new Electrode('FC5', Color.Green, false),
-      new Electrode('AF3', Color.Blue, false),
-      new Electrode('F7', Color.Yellow, false),
-      new Electrode('T7', Color.Magenta, false),
-      new Electrode('P7', Color.Cyan, false),
-      new Electrode('O1', Color.Orange, false),
-      new Electrode('O2', Color.SkyBlue, false),
-      new Electrode('P8', Color.Purple, false),
-      new Electrode('T8', Color.Lime, false),
-      new Electrode('F8', Color.Pink, false),
-      new Electrode('AF4', Color.Turquoise, false),
-      new Electrode('FC6', Color.Indigo, false),
-      new Electrode('F4', Color.Azure, false)
+      new Electrode('F3', Color.Blue1, false),
+      new Electrode('FC5', Color.Blue2, false),
+      new Electrode('AF3', Color.Blue3, false),
+      new Electrode('F7', Color.Blue4, false),
+      new Electrode('T7', Color.Red1, false),
+      new Electrode('P7', Color.Green1, false),
+      new Electrode('O1', Color.Pink1, false),
+      new Electrode('O2', Color.Pink2, false),
+      new Electrode('P8', Color.Green2, false),
+      new Electrode('T8', Color.Red2, false),
+      new Electrode('F8', Color.Blue5, false),
+      new Electrode('AF4', Color.Blue6, false),
+      new Electrode('FC6', Color.Blue7, false),
+      new Electrode('F4', Color.Blue8, false)
     ];
   }
 
