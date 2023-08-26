@@ -6,6 +6,8 @@ import { BWElectrodeArray } from '../eeg/utils/bwelectrode-array';
 import { Router } from '@angular/router';
 import { EegChartComponent } from '../eeg/eeg-chart/eeg-chart.component';
 import { Electrode } from '../eeg/utils/electrode.model';
+import { LocalStorageService } from 'src/app/business-logic/local-storage/local-storage.service';
+import { Measurement } from 'src/app/interfaces/measurement';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -14,6 +16,10 @@ import { Electrode } from '../eeg/utils/electrode.model';
 })
 export class PatientDashboardComponent {
   @ViewChild('bwChart', { static: true }) bwChart!: EegChartComponent;
+
+  patientId!: number;
+  measurements: Measurement[] = [];
+  selectedIndex: number = 0;
 
   BrainWaves = BrainWaves;
   eegDataActive: number[][][] = []    //1: Bandwith, 2: electrode, 3: Hz -> value
@@ -25,7 +31,7 @@ export class PatientDashboardComponent {
   chartData: number[][] = []
   selectedView = ViewType.Active;
   selectedBwtype = BrainWaves.DELTA;
-  selectedMeasurement: string = 'most recent';
+  selectedMeasurement: string = '';
 
   labels: string[] =  ['F3', 'FC5', 'AF3', 'F7', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'F8', 'AF4', 'FC6', 'F4'];
   chartDataDetails: number[][][] = Array.from({ length: 14 }, () => [[0]]);
@@ -36,24 +42,54 @@ export class PatientDashboardComponent {
   frontalElectrodes: Electrode[] = [];
 
   constructor(
-    private dbService: PatientDashboardService
+    private dbService: PatientDashboardService,
+    private localStorage: LocalStorageService
   ){}
 
   ngOnInit(): void {
-    this.getEEGData();
-    this.initElectrodesView();
+    this.initPatientId();
+    this.getPatientMeasurements();
+  }
+
+  //INIT PATIENT ID
+
+  initPatientId(){
+    let patientIdData = this.localStorage.getData('patientId');
+    this.patientId = typeof patientIdData === 'string' ? parseInt(patientIdData, 10) : 0;
+  }
+
+  //PATIENT MEASUREMENTS
+
+  getPatientMeasurements(){
+    this.dbService.getMeasurementsByPatientId(this.patientId)
+    .subscribe(measurements => {
+      this.measurements = measurements.sort((a, b) => {
+        const timestampA = new Date(a.mtimestamp).getTime();
+        const timestampB = new Date(b.mtimestamp).getTime();
+        return timestampB - timestampA;
+      }); //most recents first
+      this.selectedMeasurement = measurements[0].mtimestamp;
+      this.getEEGData(this.selectedIndex);
+      this.initElectrodesView();
+    });
   }
 
   //GET BRAIWAVES DATA OF PATIENT FROM CSV, INIT
 
-  getEEGData(): void{
-    this.dbService.getEEGRawDataFile()
+  getEEGData(index: number): void{
+    this.dbService.getEEGRawDataFile(this.measurements[index].csvPath)
     .subscribe(file => {
       this.eegDataActive = extractActiveEEGData(file);
       this.eegDataRest = extractRestEEGData(file);
       this.onUpdateEEG(this.selectedBwtype, this.selectedView);
     });
   }
+
+  onMeasurementSelectionChange(): void {
+    console.log(this.selectedIndex)
+    this.getEEGData(this.selectedIndex); // Call the function to retrieve data
+  }
+
 
   //DIVIDE ELECTRODES IN GROUPS
 

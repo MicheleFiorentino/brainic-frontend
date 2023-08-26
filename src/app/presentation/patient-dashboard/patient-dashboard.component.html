@@ -18,11 +18,10 @@
             <div class="header-form-field">
               <mat-form-field appearance="fill">
                 <mat-label>Select an option</mat-label>
-                <mat-select [(value)]="selectedMeasurement">
-                  <mat-option>None</mat-option>
-                  <mat-option value="option1">Option 1</mat-option>
-                  <mat-option value="option2">Option 2</mat-option>
-                  <mat-option value="option3">Option 3</mat-option>
+                <mat-select [(value)]="selectedIndex" (selectionChange)="onMeasurementSelectionChange()">
+                  <mat-option *ngFor="let measurement of measurements; let i = index" [value]="i">
+                    {{measurement.mtimestamp | date: 'yyyy/MM/dd HH:mm'}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -124,11 +123,10 @@
             <div class="header-form-field">
               <mat-form-field appearance="fill">
                 <mat-label>Select an option</mat-label>
-                <mat-select [(value)]="selectedMeasurement">
-                  <mat-option>None</mat-option>
-                  <mat-option value="option1">Option 1</mat-option>
-                  <mat-option value="option2">Option 2</mat-option>
-                  <mat-option value="option3">Option 3</mat-option>
+                <mat-select [(value)]="selectedIndex" (selectionChange)="onMeasurementSelectionChange()">
+                  <mat-option *ngFor="let measurement of measurements; let i = index" [value]="i">
+                    {{measurement.mtimestamp | date: 'yyyy/MM/dd HH:mm'}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -137,16 +135,16 @@
             <mat-card-content *ngFor="let label of labels; let i=index" class="chart-detail-container">
               <app-eeg-chart #bwChart [chartTitle]="label" [chartData]="chartDataDetails[i]" [chartElectrodeArray]="chartElectrodeArray"></app-eeg-chart>
             </mat-card-content>
+            <mat-card-actions class="mat-card-buttons">
+              <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.DELTA, selectedView)">DELTA</button>
+              <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.THETA, selectedView)">THETA</button>
+              <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.ALPHA, selectedView)">ALPHA</button>
+              <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.BETA, selectedView)">BETA</button>
+              <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.GAMMA, selectedView)">GAMMA</button>
+              <div class="mat-spacer"></div> <!-- Add a spacer to push the button to the right -->
+              <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #15af89" (click)="toggleView()">TOGGLE VIEW</button>
+            </mat-card-actions>
           </mat-card-content>
-          <mat-card-actions class="mat-card-buttons">
-            <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.DELTA, selectedView)">DELTA</button>
-            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.THETA, selectedView)">THETA</button>
-            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.ALPHA, selectedView)">ALPHA</button>
-            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.BETA, selectedView)">BETA</button>
-            <button mat-stroked-button class="mat-left-buttons" style="color:white; background-color: #797979" (click)="onUpdateEEG(BrainWaves.GAMMA, selectedView)">GAMMA</button>
-            <div class="mat-spacer"></div> <!-- Add a spacer to push the button to the right -->
-            <button mat-raised-button class="mat-left-buttons" style="color:white; background-color: #15af89" (click)="toggleView()">TOGGLE VIEW</button>
-          </mat-card-actions>
         </mat-tab>
 
         <!-- ELECTRODES VIEW -->
@@ -159,11 +157,10 @@
             <div class="header-form-field">
               <mat-form-field appearance="fill">
                 <mat-label>Select an option</mat-label>
-                <mat-select [(value)]="selectedMeasurement">
-                  <mat-option>None</mat-option>
-                  <mat-option value="option1">Option 1</mat-option>
-                  <mat-option value="option2">Option 2</mat-option>
-                  <mat-option value="option3">Option 3</mat-option>
+                <mat-select [(value)]="selectedIndex" (selectionChange)="onMeasurementSelectionChange()">
+                  <mat-option *ngFor="let measurement of measurements; let i = index" [value]="i">
+                    {{measurement.mtimestamp | date: 'yyyy/MM/dd HH:mm'}}
+                  </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

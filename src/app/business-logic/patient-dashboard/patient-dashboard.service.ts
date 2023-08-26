@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MeasurementInfoService } from '../measurement-info/measurement-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PatientDashboardService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private mInfoService: MeasurementInfoService
   ) { }
 
   private baseUrl = 'http://localhost:8080/dashboard/';
@@ -23,10 +25,11 @@ export class PatientDashboardService {
     )
   };
 
+  getMeasurementsByPatientId(patientId: number){
+    return this.mInfoService.getPatientMeasurements(patientId);
+  }
 
-  //TODO
-  //With Backend, this should do a call the get the csv file from server
-  getEEGRawDataFile(){
-    return this.http.get(this.getLocalEegUrl, { responseType: 'text' });
+  getEEGRawDataFile(csvPath: string){
+    return this.mInfoService.getPatientCSVByPath(csvPath)
   }
 }
