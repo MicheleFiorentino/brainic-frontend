@@ -17,7 +17,6 @@ import { EegElectrodesComponent } from './presentation/eeg/eeg-electrodes/eeg-el
 import { ChangePasswordComponent } from './presentation/handle-password/change-password/change-password.component';
 import { RecoverPasswordComponent } from './presentation/handle-password/recover-password/recover-password.component';
 import { ChangedPasswordComponent } from './presentation/handle-password/changed-password/changed-password.component';
-
 @NgModule({
   declarations: [
     AppComponent,

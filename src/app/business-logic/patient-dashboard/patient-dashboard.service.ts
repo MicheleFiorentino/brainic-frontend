@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MeasurementInfoService } from '../measurement-info/measurement-info.service';
+import { PatientDashboardDaoService } from 'src/app/dao/patient-dashboard-dao/patient-dashboard-dao.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +8,17 @@ import { MeasurementInfoService } from '../measurement-info/measurement-info.ser
 export class PatientDashboardService {
 
   constructor(
-    private http: HttpClient,
-    private mInfoService: MeasurementInfoService
+    private mInfoService: MeasurementInfoService,
+    private dbDaoService: PatientDashboardDaoService
   ) { }
 
-  private baseUrl = 'http://localhost:8080/dashboard/';
-  private eegUrl = 'eeg';
-  private getLocalEegUrl = 'assets/dataset_0.csv';  //TMP local file
+  createEventSource(){
+    return this.dbDaoService.createEventSource();
+  }
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        'Content-Type': 'text/csv',
-        //'Authorization': token
-      }
-    )
-  };
+  destroyEventSource(){
+    this.dbDaoService.destroyEventSource();
+  }
 
   getMeasurementsByPatientId(patientId: number){
     return this.mInfoService.getPatientMeasurements(patientId);

@@ -3,11 +3,11 @@ import { PatientDashboardService } from 'src/app/business-logic/patient-dashboar
 import { BrainWaves } from '../eeg/utils/brainwaves.enum';
 import { extractActiveEEGData, extractRestEEGData } from '../eeg/utils/bwchart.helper';
 import { BWElectrodeArray } from '../eeg/utils/bwelectrode-array';
-import { Router } from '@angular/router';
 import { EegChartComponent } from '../eeg/eeg-chart/eeg-chart.component';
 import { Electrode } from '../eeg/utils/electrode.model';
 import { LocalStorageService } from 'src/app/business-logic/local-storage/local-storage.service';
 import { Measurement } from 'src/app/interfaces/measurement';
+import { NotificationService } from 'src/app/business-logic/notification/notification.service';
 
 @Component({
   selector: 'app-patient-dashboard',
@@ -43,12 +43,33 @@ export class PatientDashboardComponent {
 
   constructor(
     private dbService: PatientDashboardService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private notification: NotificationService
   ){}
 
   ngOnInit(): void {
+    this.createEventSource();
     this.initPatientId();
     this.getPatientMeasurements();
+  }
+
+  ngOnDestroy(){
+    this.destroyEventSource();
+  }
+
+  //SUBSCRIBE FOR NOTIFICATIONS
+
+  createEventSource(){
+    this.dbService.createEventSource().subscribe(
+      (e: string) => {
+        //todo method to get a new measurment
+        this.notification.show("got a new measurement!")
+      }
+    );
+  }
+
+  destroyEventSource(){
+    this.dbService.destroyEventSource();
   }
 
   //INIT PATIENT ID
