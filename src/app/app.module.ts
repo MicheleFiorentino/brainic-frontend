@@ -12,7 +12,7 @@ import { PatientsListComponent } from './presentation/patients-list/patients-lis
 import { DoctorInfoComponent } from './presentation/doctor-info/doctor-info.component';
 import { PatientDashboardComponent } from './presentation/patient-dashboard/patient-dashboard.component';
 import { EegChartComponent } from './presentation/eeg/eeg-chart/eeg-chart.component';
-import { PatientProfileComponent } from './patient-profile/patient-profile.component';
+import { PatientProfileComponent } from './presentation/patient-profile/patient-profile.component';
 import { EegElectrodesComponent } from './presentation/eeg/eeg-electrodes/eeg-electrodes.component';
 import { ChangePasswordComponent } from './presentation/handle-password/change-password/change-password.component';
 import { RecoverPasswordComponent } from './presentation/handle-password/recover-password/recover-password.component';

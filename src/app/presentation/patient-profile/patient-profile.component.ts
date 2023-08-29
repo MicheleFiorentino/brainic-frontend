@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/business-logic/local-storage/local-storage.service';
-import { PatientInfoService } from '../business-logic/patient-info/patient-info.service';
+import { PatientInfoService } from '../../business-logic/patient-info/patient-info.service';
 import { Patient } from 'src/app/interfaces/patient';
 
 @Component({
